@@ -57,7 +57,7 @@ const DetailModalWrap = () => {
         } else {
             setData(null);
         }
-    }, [selecteId, setFixed, fetchData]);
+    }, [selecteId, setFixed]);
 
     if (selecteId) {
         return (

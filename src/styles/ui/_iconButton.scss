@@ -1,0 +1,56 @@
+.iconButton {
+    aspect-ratio: 1/1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
+    background-color: rgba(42, 42, 42, 0.6);
+    border: 2px solid hsla(0, 0%, 100%, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    &:hover {
+        border-color: #fff;
+    }
+
+    &__wrap {
+        position: relative;
+        &:hover {
+            .iconButton__text {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__text {
+        position: absolute;
+        top: -1rem;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        color: rgb(23.5, 24, 24);
+        font-weight: 500;
+        font-size: 18px;
+        background: rgb(230, 230, 230);
+        border-radius: 3px;
+        width: max-content;
+        padding: 0.5rem 1.5rem;
+        box-shadow: rgba(0, 0, 0, 0.75) 0 3px 1rem;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 95%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 0;
+            height: 0;
+            border-top: 0.8rem solid rgb(230, 230, 230);
+            border-left: 0.8rem solid transparent;
+            border-right: 0.8rem solid transparent;
+        }
+    }
+}

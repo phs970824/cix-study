@@ -7,6 +7,7 @@
     z-index: 1;
     background: #000;
     opacity: 0.7;
+    z-index: 98;
 
     a {
         display: block;
@@ -19,8 +20,7 @@
 .detail-modal-container {
     position: relative;
     width: 100%;
-    z-index: 99;
-    padding: 2em 0px;
+    padding: 3em 0px;
 }
 
 .detail-modal {
@@ -36,6 +36,7 @@
     overflow: hidden;
     z-index: 2;
     box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+    z-index: 99;
 
     .close-btn {
         position: absolute;
@@ -50,6 +51,7 @@
         width: 36px;
         height: 36px;
         padding: 8px;
+        cursor: pointer;
 
         img {
             filter: invert(1);
@@ -178,6 +180,32 @@
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
+        }
+    }
+
+    .about {
+        &-tit {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            margin-top: 48px;
+        }
+
+        &-cont {
+            width: 90%;
+
+            > div {
+                margin-bottom: 0.5em;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+
+                span:first-child {
+                    display: inline-block;
+                    color: #777;
+                    margin-right: 0.5em;
+                }
+            }
         }
     }
 

@@ -1,44 +1,43 @@
 "use client";
 
 import Image from "next/image";
-import { getTrending } from "@/api/tmdb/trending";
+import { useGetTrending } from "@/api/tmdb/trending";
 
 // style
 import IconTextButton from "@/components/ui/IconTextButton";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { useRef } from "react";
 import { OpenDetailModal } from "@/components/ui/DetailModalButton";
 
 const HeroSection = () => {
     const titleRef = useRef<HTMLDivElement>(null);
     const descRef = useRef<HTMLParagraphElement>(null);
 
-    // const { data } = getTrending();
-    const data = {
-        id: 1311031,
-        title: "The Thursday Murder Club",
-        backdrop_path: "/4KN06gns94rQFoYQWDGunK7Cob4.jpg",
-        overview:
-            "A group of senior sleuths passionate about solving cold cases get plunged into a real-life murder mystery in this comic crime caper.",
-    };
+    const { data } = useGetTrending();
+    // const data = {
+    //     id: 1311031,
+    //     title: "The Thursday Murder Club",
+    //     backdrop_path: "/4KN06gns94rQFoYQWDGunK7Cob4.jpg",
+    //     overview:
+    //         "A group of senior sleuths passionate about solving cold cases get plunged into a real-life murder mystery in this comic crime caper.",
+    // };
 
-    useEffect(() => {
-        const tl = gsap.timeline();
+    // useEffect(() => {
+    //     const tl = gsap.timeline();
 
-        tl.to(titleRef.current, {
-            scale: 0.8,
-            y: (): number => {
-                if (descRef.current) {
-                    const height =
-                        descRef.current.getBoundingClientRect().height;
-                    return height;
-                }
-                return 0;
-            },
-            duration: 2,
-            delay: 3,
-        }).to(descRef.current, { scale: 0, duration: 2 }, "<");
-    }, [data]);
+    //     tl.to(titleRef.current, {
+    //         scale: 0.8,
+    //         y: (): number => {
+    //             if (descRef.current) {
+    //                 const height =
+    //                     descRef.current.getBoundingClientRect().height;
+    //                 return height;
+    //             }
+    //             return 0;
+    //         },
+    //         duration: 2,
+    //         delay: 3,
+    //     }).to(descRef.current, { scale: 0, duration: 2 }, "<");
+    // }, [data]);
 
     return (
         <section className="sc-hero">

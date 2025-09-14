@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { span, style } from "framer-motion/client";
 // import YouTubeEmbed from './YoutubeEmbed';
 
 // component
@@ -14,7 +13,7 @@ import DetailDrama from "./DetailDrama";
 import { DetailModalProps } from "@/types/types";
 
 // store
-import { useContentWrapStore } from "@/store/detailModalStore";
+// import { useContentWrapStore } from "@/store/detailModalStore";
 
 const DetailModal = ({ data }: { data: DetailModalProps | null }) => {
     // const DetailModal = () => {
@@ -312,36 +311,34 @@ const DetailModal = ({ data }: { data: DetailModalProps | null }) => {
                             </div>
                             <div className="about" id="about">
                                 <div>
-                                    <h2>{data.title} 상세 정보</h2>
-                                    <div className="info-right">
-                                        <p>
+                                    <h2 className="about-tit">
+                                        {data.title} 상세 정보
+                                    </h2>
+                                    <div className="about-cont">
+                                        <div>
                                             <span>감독 :</span>
                                             <span>장재현</span>
-                                        </p>
-                                        <p>
+                                        </div>
+                                        <div>
                                             <span>출연 :</span>
                                             <span>{data.actor.join(", ")}</span>
-                                        </p>
-                                        <p>
+                                        </div>
+                                        <div>
                                             <span>각본 :</span>
                                             <span>장재현</span>
-                                        </p>
-                                        <p>
-                                            <span>키워드 :</span>
-                                            <span>
-                                                {data.keyword.join(", ")}
-                                            </span>
-                                        </p>
-                                        <p>
+                                        </div>
+                                        <div>
                                             <span>장르 :</span>
                                             <span>
                                                 {data.genres.join(", ")}
                                             </span>
-                                        </p>
-                                        <p>
-                                            <span>관람 등급 : </span>
-                                            <span></span>
-                                        </p>
+                                        </div>
+                                        <div>
+                                            <span>키워드 :</span>
+                                            <span>
+                                                {data.keyword.join(", ")}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

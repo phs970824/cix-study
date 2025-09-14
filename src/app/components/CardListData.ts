@@ -1,35 +1,34 @@
-import {
-    useNowPlayingMovies,
-    usePopularMovies,
-    useTopRatedMovies,
-    useUpcomingMovies,
-} from "@/api/tmdb/movies";
+import { categoryType } from "@/types/types";
 
-export function cardListData(pageParam: number) {
+export default function getCardListData(
+    pageParam: number,
+    allData: {
+        popular2: categoryType | undefined;
+        nowPlaying2: categoryType | undefined;
+        topRated2: categoryType | undefined;
+        upcoming2: categoryType | undefined;
+        upcoming: categoryType | undefined;
+    }
+) {
     const MAX_PAGE = 4;
-
-    const { data: popularMovies } = usePopularMovies();
-    const { data: nowPlayingMovies } = useNowPlayingMovies();
-    const { data: topRatedMovies } = useTopRatedMovies();
-    const { data: upcomingMovies } = useUpcomingMovies();
 
     return new Promise((res, rej) => {
         setTimeout(() => {
             if (pageParam <= MAX_PAGE) {
                 if (pageParam === 1) {
-                    res(popularMovies);
+                    res(allData.upcoming);
                 } else if (pageParam === 2) {
-                    res(nowPlayingMovies);
+                    res(allData.popular2);
                 } else if (pageParam === 3) {
-                    res(topRatedMovies);
+                    res(allData.nowPlaying2);
                 } else if (pageParam === 4) {
-                    res(upcomingMovies);
+                    res(allData.topRated2);
                 } else {
-                    res(popularMovies); // 기본값
+                    res(allData.upcoming2); // 기본값
                 }
             } else {
                 rej(new Error("error"));
             }
-        }, 2000);
+        }, 1000);
     });
 }

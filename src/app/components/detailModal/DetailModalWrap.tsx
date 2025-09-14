@@ -22,21 +22,21 @@ const DetailModalWrap = () => {
 
     const fetchData = async () => {
         const data = await getMovieDetail(Number(selecteId));
-        const genres = data.genres.map((genre: any) => genre.name);
+        const genres = data.genres.map((genre: { name: string }) => genre.name);
 
         const keywordData = await getMovieKeywords(Number(selecteId));
         const keywords = keywordData.keywords.map(
-            (keyword: any) => keyword.name
+            (keyword: { name: string }) => keyword.name
         );
 
         const credits = await getMovieCredits(Number(selecteId));
         const top10Cast = credits.cast.slice(0, 10);
-        const castNames = top10Cast.map((cast: any) => cast.name);
+        const castNames = top10Cast.map((cast: { name: string }) => cast.name);
 
         const videos = await getMovieVideos(Number(selecteId));
         const videoArray = videos.results;
         const teaserVideo = videoArray.find(
-            (video: any) => video.type === "Teaser"
+            (video: { type: string }) => video.type === "Teaser"
         );
         const seletedVideo = teaserVideo || videoArray[0];
 
@@ -57,14 +57,12 @@ const DetailModalWrap = () => {
         } else {
             setData(null);
         }
-    }, [selecteId]);
+    }, [selecteId, setFixed, fetchData]);
 
     if (selecteId) {
         return (
             <AnimatePresence>
-                <div className="dim">
-                    <CloseDetailModal> </CloseDetailModal>
-                </div>
+                <CloseDetailModal className="dim"> </CloseDetailModal>
                 {data && <DetailModal key="detail-modal" data={data} />}
             </AnimatePresence>
         );

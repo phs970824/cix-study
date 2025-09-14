@@ -1,7 +1,6 @@
 "use client";
 
 import { useContentWrapStore } from "@/store/detailModalStore";
-import { useEffect } from "react";
 
 const ContentStyleWrapper = ({ children }: { children: React.ReactNode }) => {
     const { isFixed } = useContentWrapStore();

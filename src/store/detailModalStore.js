@@ -5,11 +5,10 @@ export const useDetailModalStore = create((set) => ({
     setScrollPosition: (scrollY) => set({ scrollPosition: scrollY }),
 }));
 
-export const useContentWrapStore = create((set, get) => ({
+export const useContentWrapStore = create((set) => ({
     isFixed: false,
     top: null,
     setFixed: () => {
-        const scrollY = window.scrollY * -1;
         set({ isFixed: true });
     },
     setReset: () => {

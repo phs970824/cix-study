@@ -22,7 +22,13 @@ const OpenDetailModal = ({
     return <div onClick={handleOpenDetailModal}>{children}</div>;
 };
 
-const CloseDetailModal = ({ children }: { children: React.ReactNode }) => {
+const CloseDetailModal = ({
+    className,
+    children,
+}: {
+    className?: string;
+    children: React.ReactNode;
+}) => {
     const router = useRouter();
     const { setReset } = useContentWrapStore();
 
@@ -32,9 +38,9 @@ const CloseDetailModal = ({ children }: { children: React.ReactNode }) => {
     };
 
     return (
-        <button type="button" onClick={handleCloseDetailModal}>
+        <div className={className} onClick={handleCloseDetailModal}>
             {children}
-        </button>
+        </div>
     );
 };
 

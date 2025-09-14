@@ -8,7 +8,7 @@ const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const fetchTrending = async (timeWindow: "day" | "week" = "week") => {
-    const url = `${BASE_URL}/trending/all/${timeWindow}?language=en-US`;
+    const url = `${BASE_URL}/trending/all/${timeWindow}?language=ko-KR`;
 
     const options = {
         method: "GET",
@@ -23,7 +23,7 @@ const fetchTrending = async (timeWindow: "day" | "week" = "week") => {
     return data.results;
 };
 
-export function getTrending(timeWindow: "day" | "week" = "week") {
+export function useGetTrending(timeWindow: "day" | "week" = "week") {
     const { data } = useQuery({
         queryKey: ["trending", timeWindow],
         queryFn: () => fetchTrending(timeWindow),

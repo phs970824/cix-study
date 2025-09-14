@@ -53,13 +53,26 @@
     .btn-box {
         button,
         a {
-            width: 3.5rem;
-            height: 3.5rem;
+            width: 3.2rem;
+            height: 3.2rem;
+        }
+
+        .play-btn {
+            background-color: #fff;
+            svg {
+                color: #000;
+            }
         }
     }
 
     .info-box {
-        margin: 10px 0px;
+        margin: 15px 0px;
+        font-size: 1.2em;
+
+        .adult svg {
+            width: 2em;
+            height: 2em;
+        }
     }
 
     .hd {
@@ -71,7 +84,7 @@
     }
 
     .keywords {
-        column-gap: 2em;
+        column-gap: 1em;
         flex-wrap: wrap;
         li {
             position: relative;
@@ -80,7 +93,7 @@
                     content: "";
                     position: absolute;
                     top: 50%;
-                    right: -1.3em;
+                    right: -0.8em;
                     transform: translate(-50%, -50%);
                     width: 0.3em;
                     height: 0.3em;

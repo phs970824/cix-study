@@ -21,7 +21,11 @@ const fetchMovies = async (endpoint: string) => {
     const url = `${BASE_URL}/${endpoint}`;
     const { data } = await axios.get(url, options);
 
-    return data.results;
+    // return data.results;
+
+    const shuffledResults = data.results.sort(() => Math.random() - 0.5);
+
+    return shuffledResults;
 };
 
 // 공통 훅 생성 함수
@@ -64,3 +68,24 @@ export const useTopRatedMovies = () =>
 // upcomingMovies
 export const useUpcomingMovies = () =>
     useMoviesQuery("upcoming", "upcoming", "마음에 쏙 드실 거예요");
+
+// -------------------------------- 2차 api
+// popularMovies
+export const usePopularMovies2 = () =>
+    useMoviesQuery("popular", "popular", "평단의 찬사를 받은 영화");
+
+// nowPlayingMovies
+export const useNowPlayingMovies2 = () =>
+    useMoviesQuery(
+        "nowPlaying",
+        "now_playing",
+        "무료한 당신을 위한 엔터테인먼트"
+    );
+
+// topRatedMovies
+export const useTopRatedMovies2 = () =>
+    useMoviesQuery("topRated", "top_rated", "위트 있는 시리즈");
+
+// upcomingMovies
+export const useUpcomingMovies2 = () =>
+    useMoviesQuery("upcoming", "upcoming", "오늘의 발견!");

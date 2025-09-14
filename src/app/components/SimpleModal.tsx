@@ -69,6 +69,8 @@ const SimpleModal = () => {
                         <div className="t-wrap">
                             <div className="flex btn-box">
                                 <IconButton
+                                    className="play-btn"
+                                    comment="예고편 보기"
                                     icon={
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -160,8 +162,8 @@ const SimpleModal = () => {
                             </div>
                             <strong className="title">{data.title}</strong>
                             <div className="flex info-box">
-                                {data.adult ? (
-                                    <span>
+                                <span className="adult">
+                                    {data.adult ? (
                                         <svg
                                             width="24"
                                             height="24"
@@ -183,9 +185,7 @@ const SimpleModal = () => {
                                                 fill="white"
                                             ></path>
                                         </svg>
-                                    </span>
-                                ) : (
-                                    <span>
+                                    ) : (
                                         <svg
                                             width="24"
                                             height="24"
@@ -202,8 +202,8 @@ const SimpleModal = () => {
                                                 d="M36.92 15.484v68.647H21.553V34.62h-5.48l7.097-19.136h13.75zm44.288 0c.848 0 1.535.687 1.535 1.533v18.144c0 1.018-.044 1.885-.133 2.605a8.067 8.067 0 01-.493 1.975 14.48 14.48 0 01-.9 1.843c-.362.631-.84 1.363-1.44 2.204L60.643 70.653h21.923v13.394H41.59v-10.07l26.152-37.29V28.42H57.136v9.345H42.127V17.017c0-.846.687-1.533 1.534-1.533z"
                                             ></path>
                                         </svg>
-                                    </span>
-                                )}
+                                    )}
+                                </span>
                                 <p>{data.release_date}</p>
                                 <p className="hd">HD</p>
                             </div>

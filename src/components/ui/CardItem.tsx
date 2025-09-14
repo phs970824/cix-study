@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useSimpleModalStore } from "@/store/simpleModalStore";
 import { cardItemType } from "@/types/types";
@@ -20,7 +19,7 @@ const HOVER_DELAY = 500;
 const CardItem = ({ data, isFirst = false, isLast = false }: CardItemProps) => {
     const cardItemRef = useRef<HTMLDivElement>(null);
     const [hoverTimer, setHoverTimer] = useState<NodeJS.Timeout | null>(null);
-    const { openModal, setData } = useSimpleModalStore();
+    const { openModal } = useSimpleModalStore();
 
     const handleMouseEnter = async () => {
         if (hoverTimer) {

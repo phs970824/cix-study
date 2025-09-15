@@ -1,4 +1,4 @@
-import { categoryType } from "@/types/types";
+import { categoryType } from '@/types/types';
 
 export default function getCardListData(
     pageParam: number,
@@ -27,8 +27,8 @@ export default function getCardListData(
                     res(allData.upcoming2); // 기본값
                 }
             } else {
-                rej(new Error("error"));
+                rej(new Error('error'));
             }
-        }, 1000);
+        }, 4000);
     });
 }

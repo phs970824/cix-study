@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useRef } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { categoryType } from "@/types/types";
+import Image from 'next/image';
+import { useEffect, useMemo, useRef } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { categoryType } from '@/types/types';
 
 // data
 import {
@@ -14,11 +15,11 @@ import {
     useTopRatedMovies2,
     useUpcomingMovies,
     useUpcomingMovies2,
-} from "@/api/tmdb/movies";
+} from '@/api/tmdb/movies';
 
 //component
-import CardList from "./CardList";
-import getCardListData from "./CardListData";
+import CardList from './CardList';
+import getCardListData from './CardListData';
 
 const CategoryContents = () => {
     const observerRef = useRef<HTMLDivElement | null>(null);
@@ -38,32 +39,27 @@ const CategoryContents = () => {
         }
     }, [popularMovies, nowPlayingMovies, topRatedMovies]);
 
-    const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-        useInfiniteQuery({
-            queryKey: ["cardList"],
-            queryFn: ({ pageParam }) =>
-                getCardListData(pageParam, {
-                    upcoming: upcomingMovies,
-                    popular2: popularMovies2,
-                    nowPlaying2: nowPlayingMovies2,
-                    topRated2: topRatedMovies2,
-                    upcoming2: upcomingMovies2,
-                }),
-            initialPageParam: 1,
-            getNextPageParam: (lastPage, allPages) =>
-                allPages.length <= 4 ? allPages.length + 1 : undefined,
-        });
+    const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
+        queryKey: ['cardList'],
+        queryFn: ({ pageParam }) =>
+            getCardListData(pageParam, {
+                upcoming: upcomingMovies,
+                popular2: popularMovies2,
+                nowPlaying2: nowPlayingMovies2,
+                topRated2: topRatedMovies2,
+                upcoming2: upcomingMovies2,
+            }),
+        initialPageParam: 1,
+        getNextPageParam: (lastPage, allPages) => (allPages.length < 4 ? allPages.length + 1 : undefined),
+    });
 
     const page = data?.pages.flat() as categoryType[];
 
     // 무한스크롤 옵저버
     useEffect(() => {
+        console.log(page);
         const observer = new IntersectionObserver((entries) => {
-            if (
-                entries[0].isIntersecting &&
-                hasNextPage &&
-                !isFetchingNextPage
-            ) {
+            if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
                 fetchNextPage();
             }
         });
@@ -88,14 +84,19 @@ const CategoryContents = () => {
                     settingData.map((item: categoryType, index: number) => {
                         return <CardList key={index} items={item} />;
                     })}
-                {page
-                    ?.filter(Boolean)
-                    .map((item: categoryType, index: number) => {
-                        return <CardList key={index} items={item} />;
-                    })}
+                {page?.filter(Boolean).map((item: categoryType, index: number) => {
+                    return <CardList key={index} items={item} />;
+                })}
             </section>
-            {data && hasNextPage && !isFetchingNextPage && (
-                <span ref={observerRef}></span>
+            {hasNextPage && (
+                <>
+                    <span ref={observerRef}></span>
+                    {isFetchingNextPage && (
+                        <div className="loading">
+                            <Image src="/images/loading.gif" alt="loading" width={50} height={50} />
+                        </div>
+                    )}
+                </>
             )}
         </>
     );

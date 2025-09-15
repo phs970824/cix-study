@@ -1,17 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-const BASE_URL = "https://api.themoviedb.org/3/movie";
+const BASE_URL = 'https://api.themoviedb.org/3/movie';
 
 const options = {
-    method: "GET",
+    method: 'GET',
     headers: {
-        accept: "application/json",
+        accept: 'application/json',
         Authorization: `Bearer ${TMDB_API_KEY}`,
     },
     params: {
-        language: "ko-KR",
+        language: 'ko-KR',
         page: 1,
     },
 };
@@ -20,8 +20,6 @@ const options = {
 const fetchMovies = async (endpoint: string) => {
     const url = `${BASE_URL}/${endpoint}`;
     const { data } = await axios.get(url, options);
-
-    // return data.results;
 
     const shuffledResults = data.results.sort(() => Math.random() - 0.5);
 
@@ -46,46 +44,26 @@ const useMoviesQuery = (key: string, endpoint: string, title: string) => {
 };
 
 // popularMovies
-export const usePopularMovies = () =>
-    useMoviesQuery(
-        "popular",
-        "popular",
-        "꼭 챙겨 보세요! 회원님을 위한 콘텐츠"
-    );
+export const usePopularMovies = () => useMoviesQuery('popular1', 'popular', '꼭 챙겨 보세요! 회원님을 위한 콘텐츠');
 
 // nowPlayingMovies
-export const useNowPlayingMovies = () =>
-    useMoviesQuery(
-        "nowPlaying",
-        "now_playing",
-        "넷플릭스에 새로 올라온 콘텐츠"
-    );
+export const useNowPlayingMovies = () => useMoviesQuery('nowPlaying1', 'now_playing', '넷플릭스에 새로 올라온 콘텐츠');
 
 // topRatedMovies
-export const useTopRatedMovies = () =>
-    useMoviesQuery("topRated", "top_rated", "누구나 사랑하는 명작");
+export const useTopRatedMovies = () => useMoviesQuery('topRated1', 'top_rated', '누구나 사랑하는 명작');
 
 // upcomingMovies
-export const useUpcomingMovies = () =>
-    useMoviesQuery("upcoming", "upcoming", "마음에 쏙 드실 거예요");
+export const useUpcomingMovies = () => useMoviesQuery('upcoming1', 'upcoming', '마음에 쏙 드실 거예요');
 
 // -------------------------------- 2차 api
 // popularMovies
-export const usePopularMovies2 = () =>
-    useMoviesQuery("popular", "popular", "평단의 찬사를 받은 영화");
+export const usePopularMovies2 = () => useMoviesQuery('popula2r', 'popular', '평단의 찬사를 받은 영화');
 
 // nowPlayingMovies
-export const useNowPlayingMovies2 = () =>
-    useMoviesQuery(
-        "nowPlaying",
-        "now_playing",
-        "무료한 당신을 위한 엔터테인먼트"
-    );
+export const useNowPlayingMovies2 = () => useMoviesQuery('nowPlaying2', 'now_playing', '무료한 당신을 위한 엔터테인먼트');
 
 // topRatedMovies
-export const useTopRatedMovies2 = () =>
-    useMoviesQuery("topRated", "top_rated", "위트 있는 시리즈");
+export const useTopRatedMovies2 = () => useMoviesQuery('topRated2', 'top_rated', '위트 있는 시리즈');
 
 // upcomingMovies
-export const useUpcomingMovies2 = () =>
-    useMoviesQuery("upcoming", "upcoming", "오늘의 발견!");
+export const useUpcomingMovies2 = () => useMoviesQuery('upcoming2', 'upcoming', '오늘의 발견!');

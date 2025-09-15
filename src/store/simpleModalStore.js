@@ -1,11 +1,12 @@
-import { create } from "zustand";
-import { getMovieKeywords } from "@/api/tmdb/moviesDetail";
+import { create } from 'zustand';
+import { getMovieKeywords } from '@/api/tmdb/moviesDetail';
 
 export const useSimpleModalStore = create((set) => ({
     isOpen: false,
     data: null,
     isFirst: false,
     isLast: false,
+    isLoading: false,
     position: {
         top: 0,
         left: 0,
@@ -13,16 +14,18 @@ export const useSimpleModalStore = create((set) => ({
         height: 0,
     },
     openModal: async (data, isFirst, isLast, position) => {
-        set({ isOpen: true, data: data, isFirst, isLast, position: position });
+        set({ isLoading: true });
 
-        if (data.id) {
-            const keywords = await getMovieKeywords(data.id);
-            const limitedKeywords =
-                keywords.keywords && keywords.keywords.length > 0
-                    ? keywords.keywords.slice(0, 3)
-                    : [];
-            set({ data: { ...data, keywords: limitedKeywords } });
-        }
+        const [allData] = await Promise.all([getMovieKeywords(data.id)]);
+
+        const limitedKeywords = allData.keywords && allData.keywords.length > 0 ? allData.keywords.slice(0, 3) : [];
+
+        const finalData = {
+            ...data,
+            keywords: limitedKeywords,
+        };
+
+        set({ isOpen: true, data: finalData, isFirst, isLast, isLoading: false, position: position });
     },
     closeModal: () =>
         set({
@@ -30,6 +33,7 @@ export const useSimpleModalStore = create((set) => ({
             data: null,
             isFirst: false,
             isLast: false,
+            isLoading: false,
             position: {
                 top: 0,
                 left: 0,

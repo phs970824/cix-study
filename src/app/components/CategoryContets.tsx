@@ -57,7 +57,6 @@ const CategoryContents = () => {
 
     // 무한스크롤 옵저버
     useEffect(() => {
-        console.log(page);
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
                 fetchNextPage();

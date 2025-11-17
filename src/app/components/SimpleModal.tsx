@@ -9,7 +9,7 @@ import { useSimpleModalStore } from '@/store/simpleModalStore';
 import { OpenDetailModal } from '@/components/ui/DetailModalButton';
 
 const SimpleModal = () => {
-    const { isOpen, data, isFirst, isLast, position, closeModal, isLoading } = useSimpleModalStore();
+    const { isOpen, data, isFirst, isLast, position, closeModal } = useSimpleModalStore();
 
     const modalVariants = {
         initial: {

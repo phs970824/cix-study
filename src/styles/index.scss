@@ -2,27 +2,28 @@
 // 브레이크포인트
 // 1280이상 > 1280 > 767 >
 
-@use "sass:color";
+@use 'sass:color';
 
 //components
-@use "./components/cardList";
-@use "./components/categoryContents";
-@use "./components/contentStyleWrap";
-@use "./components/heroSection";
-@use "./components/main";
-@use "./components/mainWrap";
-@use "./components/simpleModal";
-@use "./components/detailModal/detailModal";
-@use "./components/detailModal/detailMovie";
+@use './components/cardList';
+@use './components/categoryContents';
+@use './components/contentStyleWrap';
+@use './components/heroSection';
+@use './components/main';
+@use './components/mainWrap';
+@use './components/simpleModal';
+@use './components/detailModal/detailModal';
+@use './components/detailModal/detailMovie';
+@use './account/account';
 
 //layouts
-@use "./layouts/header";
-@use "./layouts/footer";
+@use './layouts/header';
+@use './layouts/footer';
 
 //ui
-@use "./ui/cardItem";
-@use "./ui/iconButton";
-@use "./ui/iconTextButton";
+@use './ui/cardItem';
+@use './ui/iconButton';
+@use './ui/iconTextButton';
 
 // common
 .blind {

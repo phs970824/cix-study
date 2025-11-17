@@ -51,7 +51,7 @@ ul {
 // reset
 body,
 html {
-    font-size: var(--base-font-size);
+    font-size: clapm(11px, var(--base-font-size), 100px);
     --base-font-size: 14px;
     --inner: 3vw;
     --bg-color: #141414;

@@ -9,7 +9,6 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 
 const fetchTrending = async (timeWindow: 'day' | 'week' = 'week') => {
     const url = `${BASE_URL}/trending/all/${timeWindow}?language=ko-KR`;
-    const randomIndex = Math.floor(Math.random() * 4);
 
     const options = {
         method: 'GET',
@@ -20,6 +19,7 @@ const fetchTrending = async (timeWindow: 'day' | 'week' = 'week') => {
     };
 
     const { data } = await axios.get(url, options);
+    const randomIndex = Math.floor(Math.random() * 10);
     const trendingData = data.results[randomIndex];
 
     return trendingData;
